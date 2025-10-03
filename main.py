@@ -349,12 +349,12 @@ async def scrape_user(username: str, max_retries: int = 3):
 
 # ================= Routes =================
 @app.get("/scrape/{username}")
-@limiter.limit("8/minute")  # Reduced for safety
+@limiter.limit("20/minute")  # Reduced for safety
 async def get_user(username: str, request: Request):
     return await scrape_user(username)
 
 @app.get("/proxy-image/")
-@limiter.limit("10/minute")
+@limiter.limit("20/minute")
 async def proxy_image(request: Request, url: str, max_retries: int = 3):
     client = get_client()
     
